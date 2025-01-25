@@ -1,13 +1,23 @@
 import express from 'express';
+import 'dotenv/config';
 
-const app: any = express();
+import { registerUser } from './controllers/users/create';
+import router from './routes';
 
-app.get("/test", (req: any, res: any) => {
-  res.send('This awesome project works!');
+const app: express.Application = express();
+
+// For parsing application/json
+app.use(express.json());
+
+app.use(router);
+
+app.all('*', (req: any, res: any) => {
+  res.status(404).send('Not found');
 });
 
-app.listen(3000, () => {
-  console.log(`Server running at http://localhost:128`);
+const PORT = process.env.PORT ?? 3000;
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });
 
 export default app;
