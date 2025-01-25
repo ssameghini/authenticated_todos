@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import jwt, { SignOptions } from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
-import User from 'src/models/User';
-import Passwords from 'src/models/Password';
-import { JWT_EXPIRES_IN, JWT_SECRET } from 'src/config';
+import User from '../../models/User';
+import Passwords from '../../models/Password';
+import { JWT_EXPIRES_IN, JWT_SECRET } from '../../config';
 
 const secretKey = JWT_SECRET;
 

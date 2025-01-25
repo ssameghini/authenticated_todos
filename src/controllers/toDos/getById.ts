@@ -1,6 +1,6 @@
 import { Response } from 'express';
-import { AuthenticatedRequest } from 'src/middleware/auth';
-import ToDo from 'src/models/ToDo';
+import { AuthenticatedRequest } from '../../middleware/auth';
+import ToDo from '../../models/ToDo';
 
 export const getToDoById = async (req: AuthenticatedRequest, res: Response) => {
     try {

@@ -1,7 +1,6 @@
 import express from 'express';
 import 'dotenv/config';
 
-import { registerUser } from './controllers/users/create';
 import router from './routes';
 
 const app: express.Application = express();

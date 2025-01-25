@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from 'sequelize';
-import { getSequelize } from 'src/database/connector';
+import { getSequelize } from '../database/connector';
 
 export enum ToDoStatus {
     PENDING = 'pending',
