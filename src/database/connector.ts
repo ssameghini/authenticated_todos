@@ -1,23 +1,37 @@
 import { Options, Sequelize } from 'sequelize';
-import { DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER } from '../config';
+import { databaseConfig } from '../config';
+import getMySQLSequelizeConfiguration from './dialectConfigurations/mysql';
+import getSQLiteSequelizeConfiguration from './dialectConfigurations/sqlite';
 
 let sequelize: Sequelize;
 
-function initiateSequelize() {
-    const databasePort = Number(DB_PORT);
-    const sequelizeOptions: Options = {
-        dialect: 'mysql',
-        host: DB_HOST,
-        port: Number.isInteger(databasePort) ? databasePort : 3306,
-        logging: false,
-        define: {
-            timestamps: false
-        },
+function getSequelizeConfiguration(): Options {
+    let sequelizeOptions: Options;
+    switch (databaseConfig.dialect) {
+        case 'mysql':
+            sequelizeOptions = getMySQLSequelizeConfiguration();
+            break;
+        case 'sqlite':
+        default:
+            sequelizeOptions = getSQLiteSequelizeConfiguration();
+            break;
+    }
+    sequelizeOptions.logging = false;
+    sequelizeOptions.define = {
+        underscored: true,
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
+        deletedAt: 'deleted_at',
     };
-    sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, sequelizeOptions);
+    return sequelizeOptions;
 }
 
-export function getSequelize() {
+function initiateSequelize(): void {
+    const sequelizeOptions = getSequelizeConfiguration();
+    sequelize = new Sequelize(sequelizeOptions);
+}
+
+export function getSequelize(): Sequelize {
     if (!sequelize) {
         initiateSequelize();
     }

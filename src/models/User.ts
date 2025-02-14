@@ -9,11 +9,8 @@ interface UserAttributes {
 interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
 
 class User extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
-    public id!: number;
-    public username!: string;
-
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
+    declare id: number;
+    declare username: string;
 }
 
 User.init(
@@ -32,6 +29,7 @@ User.init(
     {
         sequelize: getSequelize(),
         tableName: 'users',
+        timestamps: true,
     }
 );
 

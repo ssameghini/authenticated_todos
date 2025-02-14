@@ -1,14 +1,15 @@
 import { DataTypes, Model } from 'sequelize';
 import { getSequelize } from '../database/connector';
+import User from './User';
 
 class Passwords extends Model {
-    public id!: number;
-    public hashedPassword!: string;
-    public active!: boolean;
-    public userId!: number;
-    public createdAt!: Date;
-    public updatedAt!: Date;
-    public expirationDate!: Date;
+    declare id: number;
+    declare hashedPassword: string;
+    declare active: boolean;
+    declare userId: number;
+    declare createdAt: Date;
+    declare updatedAt: Date;
+    declare expirationDate: Date;
 }
 
 Passwords.init(
@@ -26,19 +27,16 @@ Passwords.init(
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: true,
+            unique: 'active_user_password',
         },
         userId: {
             type: DataTypes.INTEGER.UNSIGNED,
             allowNull: false,
-        },
-        createdAt: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW,
-        },
-        updatedAt: {
-            type: DataTypes.DATE,
-            allowNull: true,
+            unique: 'active_user_password',
+            references: {
+                model: User,
+                key: 'id',
+            },
         },
         expirationDate: {
             type: DataTypes.DATE,
@@ -48,7 +46,15 @@ Passwords.init(
     {
         sequelize: getSequelize(),
         tableName: 'passwords',
+        timestamps: true,
     }
 );
+
+Passwords.belongsTo(User, {
+    foreignKey: 'userId',
+    as: 'user',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+});
 
 export default Passwords;

@@ -1,5 +1,6 @@
 import { DataTypes, Model, Optional } from 'sequelize';
 import { getSequelize } from '../database/connector';
+import User from './User';
 
 export enum ToDoStatus {
     PENDING = 'pending',
@@ -19,14 +20,11 @@ interface ToDoAttributes {
 interface ToDoCreationAttributes extends Optional<ToDoAttributes, 'id'> {}
 
 class ToDo extends Model<ToDoAttributes, ToDoCreationAttributes> implements ToDoAttributes {
-    public id!: number;
-    public title!: string;
-    public todo!: string;
-    public status!: string;
-    public userId!: number;
-
-    public readonly createdAt!: Date;
-    public readonly updatedAt!: Date;
+    declare id: number;
+    declare title: string;
+    declare todo: string;
+    declare status: string;
+    declare userId: number;
 }
 
 ToDo.init(
@@ -52,12 +50,24 @@ ToDo.init(
         userId: {
             type: DataTypes.INTEGER.UNSIGNED,
             allowNull: false,
+            references: {
+                model: User,
+                key: 'id',
+            }
         },
     },
     {
         sequelize: getSequelize(),
         tableName: 'todos',
+        timestamps: true,
     }
 );
+
+ToDo.belongsTo(User, {
+    foreignKey: 'userId',
+    as: 'user',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+});
 
 export default ToDo;

@@ -1,13 +1,18 @@
 // Database configuration
-export const DB_HOST = process.env.DB_HOST ?? 'localhost';
-export const DB_PORT = process.env.DB_PORT ?? 3306;
-export const DB_USER = process.env.DB_USER ?? 'users';
-export const DB_PASSWORD = process.env.DB_PASSWORD ?? 'password';
-export const DB_NAME = process.env.DB_NAME ?? 'users';
+export const databaseConfig = {
+    dialect: process.env.DB_DIALECT,
+    host: process.env.DB_HOST,
+    port: process.env.DB_PORT,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    name: process.env.DB_NAME,
+    sqlite: {
+        storage: process.env.DB_SQLITE_STORAGE,
+    }
+};
 
 // Server configuration
 export const PORT = process.env.PORT ?? 3000;
-export const HOST = process.env.HOST ?? 'localhost';
 
 // JWT configuration
 export const JWT_SECRET = process.env.JWT_SECRET ?? 'secret';
