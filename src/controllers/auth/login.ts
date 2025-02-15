@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import jwt, { SignOptions } from 'jsonwebtoken';
-import bcrypt from 'bcrypt';
-import User from '../../models/User';
-import Passwords from '../../models/Password';
-import { JWT_EXPIRES_IN, JWT_SECRET } from '../../config';
+import User from '@models/User';
+import Passwords from '@models/Password';
+import { JWT_EXPIRES_IN, JWT_SECRET } from '@config';
+import { comparePasswords } from '@utils/encryption';
 
 const secretKey = JWT_SECRET;
 
@@ -29,7 +29,7 @@ export const login = async (req: Request, res: Response) => {
     }
 
     // Validate password
-    const isPasswordValid = await bcrypt.compare(password, userPassword.hashedPassword);
+    const isPasswordValid = await comparePasswords(password, userPassword.hashedPassword);
     if (!isPasswordValid) {
         return res.status(401).json({ message: 'Invalid username or password' });
     }

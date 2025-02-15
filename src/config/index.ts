@@ -19,5 +19,5 @@ export const JWT_SECRET = process.env.JWT_SECRET ?? 'secret';
 export const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN ?? '1h';
 
 // Authentication
-export const PASSWORD_EXPIRATION_DAYS = process.env.PASSWORD_EXPIRATION_DAYS ?? 90;
-export const PASSWORD_HASHING_ROUNDS = process.env.PASSWORD_HASHING_ROUNDS ?? 10;
+export const PASSWORD_EXPIRATION_DAYS = Number(process.env.PASSWORD_EXPIRATION_DAYS) || 90;
+export const PASSWORD_HASHING_ROUNDS = Number(process.env.PASSWORD_HASHING_ROUNDS) || 10;

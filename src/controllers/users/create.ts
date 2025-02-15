@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import bcrypt from 'bcrypt';
-import User from '../../models/User';
-import Passwords from '../../models/Password';
-import { PASSWORD_EXPIRATION_DAYS, PASSWORD_HASHING_ROUNDS } from '../../config';
+import User from '@models/User';
+import Passwords from '@models/Password';
+import { PASSWORD_EXPIRATION_DAYS } from '@config';
+import { encryptPassword } from '@utils/encryption';
 
 const registerUser = async (req: Request, res: Response) => {
     const { username, password } = req.body;
@@ -19,7 +19,7 @@ const registerUser = async (req: Request, res: Response) => {
         }
 
         // Hash the password
-        const hashedPassword = await bcrypt.hash(password, PASSWORD_HASHING_ROUNDS);
+        const hashedPassword = await encryptPassword(password);
 
         // Create a new user
         const newUser = await User.create({ username });
@@ -29,8 +29,9 @@ const registerUser = async (req: Request, res: Response) => {
         await Passwords.create({ hashedPassword, userId: newUser.id, expirationDate: passwordExpirationDate });
 
         return res.status(201).json({ message: 'User registered successfully', user: newUser });
-    } catch (error) {
-        return res.status(500).json({ message: 'Internal server error', error });
+    } catch (error: any) {
+        console.log(error);
+        return res.status(500).json({ message: 'Internal server error' });
     }
 };
 

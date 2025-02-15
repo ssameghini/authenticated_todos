@@ -1,6 +1,6 @@
 import { Response } from 'express';
-import { AuthenticatedRequest } from '../../middleware/auth';
-import ToDo, { ToDoStatus } from '../../models/ToDo';
+import { AuthenticatedRequest } from '@middlewares/auth';
+import ToDo, { ToDoStatus } from '@models/ToDo';
 
 export const updateToDo = async (req: AuthenticatedRequest, res: Response): Promise<Response> => {
     const userId = req.user.id;

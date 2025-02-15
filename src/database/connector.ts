@@ -1,5 +1,5 @@
 import { Options, Sequelize } from 'sequelize';
-import { databaseConfig } from '../config';
+import { databaseConfig } from '@config';
 import getMySQLSequelizeConfiguration from './dialectConfigurations/mysql';
 import getSQLiteSequelizeConfiguration from './dialectConfigurations/sqlite';
 
