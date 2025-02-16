@@ -1,5 +1,7 @@
 dist
 .env
+.env.*
+!.env.dist
 challenges
 
 # Ignore Visual Studio temporary files, build results, and
