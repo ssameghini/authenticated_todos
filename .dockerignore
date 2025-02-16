@@ -1,0 +1,31 @@
+# =============== Files to ignore by Docker build ===============
+
+# Modules
+node_modules
+dist
+
+# Markdown files
+*.md
+
+# Log files
+*.log
+
+# Docker files
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# Editor files
+.vscode
+
+# Git files
+.git
+.gitignore
+
+# Node files
+.nvmrc
+.env
+.env.*
+
+# Development
+*.config.js
