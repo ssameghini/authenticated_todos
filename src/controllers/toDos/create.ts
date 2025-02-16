@@ -23,6 +23,7 @@ export const createToDo = async (req: AuthenticatedRequest, res: Response) => {
 
         res.status(201).json(savedToDo);
     } catch (error) {
-        res.status(500).json({ message: 'Internal server error', error });
+        console.error(error);
+        return res.status(500).json({ message: 'Internal server error' });
     }
 };

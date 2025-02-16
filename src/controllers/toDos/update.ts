@@ -30,6 +30,7 @@ export const updateToDo = async (req: AuthenticatedRequest, res: Response): Prom
 
         return res.status(200).json(toDo);
     } catch (error) {
-        return res.status(500).json({ message: 'Internal server error', error });
+        console.error(error);
+        return res.status(500).json({ message: 'Internal server error' });
     }
 };

@@ -2,7 +2,7 @@ import { Response } from 'express';
 import { AuthenticatedRequest } from '@middlewares/auth';
 import ToDo from '@models/ToDo';
 
-export const getToDoById = async (req: AuthenticatedRequest, res: Response) => {
+export const deleteToDo = async (req: AuthenticatedRequest, res: Response) => {
     try {
         const userId = req.user.id;
 
@@ -18,7 +18,9 @@ export const getToDoById = async (req: AuthenticatedRequest, res: Response) => {
             return res.status(401).json({ message: 'Forbidden' });
         }
 
-        res.status(200).json(toDo);
+        await ToDo.destroy({ where: { id } });
+
+        res.status(204).send();
     } catch (error) {
         console.error(error);
         return res.status(500).json({ message: 'Internal server error' });
