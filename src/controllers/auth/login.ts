@@ -1,11 +1,8 @@
 import { Request, Response } from 'express';
-import jwt, { SignOptions } from 'jsonwebtoken';
 import User from '@models/User';
 import Passwords from '@models/Password';
-import { JWT_EXPIRES_IN, JWT_SECRET } from '@config';
 import { comparePasswords } from '@utils/encryption';
-
-const secretKey = JWT_SECRET;
+import { jwtSign } from '@src/utils/jwt';
 
 export const login = async (req: Request, res: Response) => {
     const { username, password } = req.body;
@@ -35,8 +32,8 @@ export const login = async (req: Request, res: Response) => {
     }
 
     // Generate JWT
-    const token = jwt.sign({ username }, secretKey, { expiresIn: JWT_EXPIRES_IN as SignOptions['expiresIn'] });
+    const accessToken = jwtSign({ sub: user.id, username: user.username });
 
     // Return token
-    return res.status(200).json({ token });
+    return res.status(200).json({ accessToken });
 };
