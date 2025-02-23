@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { jwtVerify } from '@src/utils/jwt';
-import User from '@src/models/User';
+import { jwtVerify } from '#src/utils/jwt';
+import User from '#src/models/User';
 
 export interface AuthenticatedRequest extends Request {
     user?: any;

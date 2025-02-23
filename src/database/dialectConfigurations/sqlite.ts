@@ -1,5 +1,5 @@
 import { Options } from "sequelize";
-import { databaseConfig } from "@config";
+import { databaseConfig } from "#config";
 
 export default function getSQLiteSequelizeConfiguration(): Options {
     if (!databaseConfig.name) {

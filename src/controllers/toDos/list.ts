@@ -1,6 +1,6 @@
 import { Response } from 'express';
-import { AuthenticatedRequest } from '@middlewares/auth';
-import ToDo from '@models/ToDo';
+import { AuthenticatedRequest } from '#middlewares/auth';
+import ToDo from '#models/ToDo';
 
 export const listToDos = async (req: AuthenticatedRequest, res: Response) => {
     try {

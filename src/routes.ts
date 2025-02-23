@@ -1,7 +1,7 @@
 import express from 'express';
-import userRoutes from '@controllers/users';
-import todoRoutes from '@controllers/toDos';
-import authRoutes from '@controllers/auth';
+import userRoutes from '#controllers/users';
+import todoRoutes from '#controllers/toDos';
+import authRoutes from '#controllers/auth';
 
 const router = express.Router();
 

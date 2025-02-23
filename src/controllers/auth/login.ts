@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import User from '@models/User';
-import Passwords from '@models/Password';
-import { comparePasswords } from '@utils/encryption';
-import { jwtSign } from '@src/utils/jwt';
+import User from '#models/User';
+import Passwords from '#models/Password';
+import { comparePasswords } from '#utils/encryption';
+import { jwtSign } from '#src/utils/jwt';
 
 export const login = async (req: Request, res: Response) => {
     const { username, password } = req.body;

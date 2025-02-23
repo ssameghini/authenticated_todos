@@ -2,7 +2,7 @@ import express from 'express';
 import 'dotenv/config';
 
 import router from './routes';
-import { syncModels } from '@models/syncModels';
+import { syncModels } from '#models/syncModels';
 
 const app: express.Application = express();
 

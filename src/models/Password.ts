@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize';
-import { getSequelize } from '@database/connector';
+import { getSequelize } from '#database/connector';
 import User from './User';
 
 class Passwords extends Model {

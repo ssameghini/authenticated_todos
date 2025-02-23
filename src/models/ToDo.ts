@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from 'sequelize';
-import { getSequelize } from '@database/connector';
+import { getSequelize } from '#database/connector';
 import User from './User';
 
 export enum ToDoStatus {

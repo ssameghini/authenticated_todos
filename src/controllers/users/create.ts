@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import User from '@models/User';
-import Passwords from '@models/Password';
-import { PASSWORD_EXPIRATION_DAYS } from '@config';
-import { encryptPassword } from '@utils/encryption';
+import User from '#models/User';
+import Passwords from '#models/Password';
+import { PASSWORD_EXPIRATION_DAYS } from '#config';
+import { encryptPassword } from '#utils/encryption';
 
 const registerUser = async (req: Request, res: Response) => {
     const { username, password } = req.body;

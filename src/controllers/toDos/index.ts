@@ -1,7 +1,7 @@
 import express from 'express';
 import { createToDo } from './create';
 import { updateToDo } from './update';
-import authenticate from '@middlewares/auth';
+import authenticate from '#middlewares/auth';
 import { listToDos } from './list';
 import { getToDoById } from './getById';
 import { deleteToDo } from './delete';
