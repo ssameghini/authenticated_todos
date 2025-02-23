@@ -10,13 +10,13 @@
     "strict": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "@src/*": ["./src/*"],
-      "@config": ["./src/config"],
-      "@controllers/*": ["./src/controllers/*"],
-      "@database/*": ["./src/database/*"],
-      "@middlewares/*": ["./src/middlewares/*"],
-      "@models/*": ["./src/models/*"],
-      "@utils/*": ["./src/utils/*"],
+      "#src/*": ["src/*"],
+      "#config": ["src/config"],
+      "#controllers/*": ["src/controllers/*"],
+      "#database/*": ["src/database/*"],
+      "#middlewares/*": ["src/middlewares/*"],
+      "#models/*": ["src/models/*"],
+      "#utils/*": ["src/utils/*"]
     },
     "plugins": [
       { "transform": "typescript-transform-paths" },
@@ -27,6 +27,6 @@
     "transpileOnly": true,
     "require": ["typescript-transform-paths/register"]
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "test/**/*"]
+  "include": ["src/**/*", "__tests__/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
